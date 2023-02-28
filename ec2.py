@@ -12,8 +12,9 @@ def menu():
         print ('3. us-west-1')
         print ('4. us-west-2')
         print ('5. ca-central-1')
-        region_num = input("Enter a number from [1-5]: ")
-        if not 1 <= int(region_num) <= 5:
+        print ('6. ap-south-1')
+        region_num = input("Enter a number from [1-6]: ")
+        if not 1 <= int(region_num) <= 6:
             print ('Please enter a valid number!')
         else:
             if region_num == '1':
@@ -26,6 +27,8 @@ def menu():
                 region_name = "us-west-2"
             elif region_num == '5':
                 region_name = "ca-central-1"
+            elif region_num == '6':
+                region_name = "ap-south-1"
             break
 
     key_name = input("Enter your key name: ")
@@ -38,7 +41,8 @@ def get_image_id (region_name):
     ec2 = boto3.resource('ec2', region_name=region_name)
     filters = [
         {'Name': 'owner-id', 'Values': ['137112412989']}, 
-        {'Name':'description', 'Values':['Amazon Linux 2 AMI 2.0.20200917.0 x86_64 HVM gp2']}
+        {'Name':'description', 'Values':['Amazon Linux 2 Kernel 5.10 AMI 2.0.20230207.0 x86_64 HVM gp2']}
+        
     ]
     images = ec2.images.filter(Filters=filters).all()
 
